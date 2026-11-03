@@ -1,0 +1,262 @@
+/* Brand New World (BNW) - Custom Styles & Geopolitical HUD Theme */
+
+:root {
+  --bg-deep: #07090e;
+  --bg-surface: #0e131f;
+  --bg-card: rgba(18, 24, 38, 0.75);
+  --border-glow: rgba(56, 189, 248, 0.25);
+  --accent-cyan: #38bdf8;
+  --accent-blue: #3b82f6;
+  --accent-purple: #818cf8;
+  --accent-discord: #5865F2;
+  --accent-discord-hover: #4752c4;
+  --accent-gold: #f59e0b;
+  --accent-emerald: #10b981;
+  --accent-crimson: #ef4444;
+  --font-heading: 'Orbitron', 'Rajdhani', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #07090e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 4px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #38bdf8;
+}
+
+/* Base Body & Scanline Overlay */
+body {
+  background-color: var(--bg-deep);
+  color: #e2e8f0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono-tech {
+  font-family: var(--font-mono);
+}
+
+/* Scanline and Grid effect */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.scanline-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Glassmorphism tactical panels */
+.tactical-glass {
+  background: rgba(13, 19, 32, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.16);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.45);
+}
+
+.tactical-glass:hover {
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+/* Discord Pulsing Aura */
+.discord-glow {
+  box-shadow: 0 0 25px rgba(88, 101, 242, 0.45), 0 0 50px rgba(88, 101, 242, 0.25);
+  animation: discord-pulse 3s infinite ease-in-out;
+}
+
+@keyframes discord-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.4), 0 0 45px rgba(88, 101, 242, 0.2);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(88, 101, 242, 0.7), 0 0 70px rgba(88, 101, 242, 0.35);
+    transform: scale(1.02);
+  }
+}
+
+/* Pulse animation for Live Season */
+@keyframes live-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.live-indicator {
+  animation: live-pulse 1.8s infinite ease-in-out;
+}
+
+/* Season Button active state glow */
+.season-tab-btn.active {
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(99, 102, 241, 0.25));
+  border-color: #38bdf8;
+  color: #ffffff;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+/* Sub-category 3 Buttons (Major Wars, Major Events, Minor Events) */
+.category-btn {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.category-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: 0.5s;
+}
+
+.category-btn:hover::before {
+  left: 100%;
+}
+
+.category-btn.active {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  color: #ffffff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 22px rgba(37, 99, 235, 0.5);
+}
+
+.category-btn.active-wars {
+  background: linear-gradient(135deg, #b91c1c, #991b1b) !important;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.5) !important;
+}
+
+.category-btn.active-major {
+  background: linear-gradient(135deg, #d97706, #b45309) !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.45) !important;
+}
+
+.category-btn.active-minor {
+  background: linear-gradient(135deg, #0284c7, #0369a1) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.45) !important;
+}
+
+/* Corner Cut Accents */
+.tech-corner {
+  position: relative;
+}
+.tech-corner::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid #38bdf8;
+  border-left: 2px solid #38bdf8;
+}
+.tech-corner::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid #38bdf8;
+  border-right: 2px solid #38bdf8;
+}
+
+/* Radar Sweep Keyframes */
+@keyframes sweep {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.radar-sweep-arm {
+  transform-origin: center center;
+  animation: sweep 4s linear infinite;
+}
+
+/* Toast Notifications */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  animation: toast-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Modal Transitions */
+.modal-backdrop {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content-box {
+  transform: scale(0.95) translateY(10px);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-backdrop.open .modal-content-box {
+  transform: scale(1) translateY(0);
+}
